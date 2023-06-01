@@ -1,6 +1,5 @@
 import compatibility
 
-
 def information(): 
   print("\nPlease enter your information for the   following questions")
   shower = input("Enter 'Y' if you shower at night, and 'N' if you don't: \n")
