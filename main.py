@@ -1,71 +1,50 @@
 import compatibility
 
 def information(): 
-  print("\nPlease enter your information for the   following questions")
-  shower = input("Enter 'Y' if you shower at night, and 'N' if you don't: \n")
+  print("\nPlease enter your information for the following questions")
+
+  "Shower preference (night shower or morning shower"
+  
+  shower = input("Enter 'Y' if you shower at night, and 'N' if you don't: \n").lower()
+  valid_answers = ["y", "n"]
+  while shower not in valid_answers:
+    shower = input("Please try again, enter either 'Y' or 'N'").lower()
   nightShower = False
-  if (shower == "Y" or shower == "N"):
-    if(shower == "Y"):
-      nightShower = True
-  else:
-    print("Wrong input, try program again")
-    quit()
+  if (shower == 'y'):
+    nightShower = True
+
+    "Cleanliness from scale of 1-10"
+  
   clean = input("Rate how clean you keep your room by entering a number between 1-10:  \n")
-  try:
-    clean = int(clean)
-  except(ValueError):
-    print("Not a valid input, quitting program")
-    quit()         
-  check = False
-  for x in range(1,11):
-    if x == clean:
-      check = True
-  if(not check):
-    print("Wrong input, try program again")
-    quit()
+  while not clean.isdigit() or int(clean) < 1 or int(clean) > 10:
+    clean = input("Entering a number between 1-10:  \n")
+  clean = int(clean)
+
+  "Temperature in farenheit"
+  
   temp = input("Please enter what temperature, in F,  you prefer to keep your room at: \n")
-  try:
-    temp = int(temp)
-  except ValueError:
-    print("Something went wrong")
-    quit()
-  pet = input("If you are bringing a pet or are okay with your roommate having a pet, please enter 'Y', else, 'N': \n")
+  while not temp.isdigit():
+    temp = input("Please enter a valid temperature")
+  temp = int(temp)
+  "Pet in dorm, yes or no"
+  
+  pet = input("If you are bringing a pet or are okay with your roommate having a pet, please enter 'Y', else, 'N': \n").lower()
+  while pet not in valid_answers:
+    pet = input("Please try again, enter either 'Y' or 'N'").lower()
   yesPet = False
-  if (pet == 'Y' or pet == 'N'):
-    if(pet == 'Y'):
-      yesPet = True
-  else:
-    print("Something went wrong")
-    quit()
+  if (pet == 'y'):
+    yesPet = True
+  
   sleep = input("Please enter the time you go to sleep in military time (ex 11pm is 23) \n")
-  try:
-    sleep = float(sleep)
-  except ValueError:
-    print("Something went wrong")
-    quit()
-  clock = []
-  validInput = False
-  for x in range(0,24):
-    clock.append(x)
-  for t in clock:
-    if (sleep == t):
-      validInput = True
-  if not validInput:
-    print("That's not a valid time, quiting program")
-    quit()
-  validInput = False
+  clock = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  while not sleep.isdigit() or int(sleep) not in clock:
+    sleep = input("Please try again and enter a valid time")
+  sleep = int(sleep)
+  
   awake = input("PLease enter the time you wake up in military time (ex 11pm is 23) \n")
-  try:
-    awake = float(awake)
-  except ValueError:
-    print("Something went wrong")
-    quit()
-  for t in clock:
-    if (awake == t):
-      validInput = True
-  if not validInput:
-    print("That's not a valid time, quiting program")
-    quit()
+  while not awake.isdigit() or int(awake) not in clock:
+    awake = input("Please try again and enter a valid time")
+  awake = int(awake)
   return [nightShower, clean, temp, yesPet, sleep, awake]
   
   
